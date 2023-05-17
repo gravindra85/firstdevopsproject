@@ -7,13 +7,13 @@ pipeline {
         stage('Build Maven'){
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gravindra85/firstdevopsproject']]])
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t gravindra85/first_devops_project .'
+                    bat 'docker build -t gravindra85/first_devops_project .'
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
             steps{
                 script{
                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                   sh 'docker login -u javatechie -p ${dockerhubpwd}'
+                   bat 'docker login -u javatechie -p ${dockerhubpwd}'
 
 }
                    sh 'docker push javatechie/devops-integration'
