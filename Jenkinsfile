@@ -21,7 +21,7 @@ pipeline {
             steps{
                 script{
                    withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                   bat 'docker login -u gravindra85 -p ${dockerhubpwd}'
+                   bat 'docker login -u gravindra85 -p %dockerhubpwd%'
                    }
                    bat 'docker push gravindra85/first_devops_project'
                 }
