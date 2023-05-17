@@ -24,7 +24,7 @@ pipeline {
                    bat 'docker login -u gravindra85 -p ${dockerhubpwd}'
 
 }
-                   sh 'docker push gravindra85/first_devops_project'
+                   bat 'docker push gravindra85/first_devops_project'
                 }
             }
         }
